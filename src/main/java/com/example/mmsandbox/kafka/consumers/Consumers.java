@@ -15,7 +15,7 @@ public class Consumers {
     String siteName;
 
     @Bean
-    public Consumer<KStream<String, TestPayload>> tanalystinvoiceconsumer() {
+    public Consumer<KStream<String, TestPayload>> tanalystInvoiceConsumer() {
         return c -> c.foreach((key, tAnalystPayload) -> {
             log.debug("kafka tanalystinvoiceconsumer consumer called with key " + key);
             if (siteName.equals(key)) {
@@ -39,7 +39,7 @@ public class Consumers {
      * @return
      */
     @Bean
-    public Consumer<KStream<String, TestPayload>> reruncompletedConsumer() {
+    public Consumer<KStream<String, TestPayload>> rerunCompletedConsumer() {
         return c -> c.foreach((key, rerunStatus) -> {
             log.debug("kafka reruncompleted consumer called with key " + key);
             if (siteName.equals(key)) {

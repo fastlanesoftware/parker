@@ -4,7 +4,7 @@ spring:
     properties:
       sasl.mechanism: PLAIN
       sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule   required username='${kafkaUser}'   password='${kafkaPassword}';
-      bootstrap.servers: sandbox.aws.confluent.cloud:9092
+      bootstrap.servers: pkc-ldvj1.ap-southeast-2.aws.confluent.cloud:9092
       security.protocol: SASL_SSL
       # client.dns.lookup: use_all_dns_ips
       # Set to 10 seconds, so brokers are not overwhelmed in cases of incorrectly configured or expired credentials
@@ -26,22 +26,14 @@ spring:
 #    producer:
 #      useNativeEncoding: true
 
-spring.cloud.stream.kafka.binder.configuration:
-  key.serializer: org.apache.kafka.common.serialization.StringSerializer
-spring.cloud.stream.kafka.bindings.rerun-request.producer:
-  configuration:
-    value.serializer: org.springframework.kafka.support.serializer.JsonSerializer
-spring.cloud.stream.kafka.bindings.login-activity.producer:
-  configuration:
-    value.serializer: org.springframework.kafka.support.serializer.JsonSerializer
 # setup the consumer queues
 spring.cloud:
   function:
-    definition: tanalystinvoiceconsumer;reruncompleted
+    definition: tanalystInvoiceConsumer;rerunCompletedConsumer
   stream.bindings:
-    tanalystinvoiceconsumer-in-0:
+    tanalystInvoiceConsumer-in-0:
       destination: demo-received
-    reruncompleted-in-0:
+    rerunCompletedConsumer-in-0:
       destination: demo-completed
 
 # setup the consumer configuration
