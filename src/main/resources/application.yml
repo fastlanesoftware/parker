@@ -12,19 +12,19 @@ spring:
       # Keep this default for cloud environments
       # request.timeout.ms: 30000
       # client.id: ${siteName}-bv-app
-      # application.id: ${siteName}-group
+      application.id: demo-group
       # Best practice for Kafka producer to prevent data loss
     acks: all
 # setup the producer queues
-#spring.cloud.stream.bindings:
-#  rerun-request:
-#    destination: ${rerunRequestTopic}
-#    producer:
-#      useNativeEncoding: true
-#  login-activity:
-#    destination: ${loginActivityTopic}
-#    producer:
-#      useNativeEncoding: true
+spring.cloud.stream.bindings:
+  rerun-request:
+    destination: demo-request
+    producer:
+      useNativeEncoding: true
+  login-activity:
+    destination: demo-activity
+    producer:
+      useNativeEncoding: true
 
 # setup the consumer queues
 spring.cloud:
